@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name='viewport' content="width=device-width, initial-scale = 1">
         <title>Stone, Paper & Scissor</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -11,44 +12,56 @@
     <body>
         <header>
 
-            <span id="user">YOU</span>
+            <div id="header">
+                <span id="user">YOU</span>
 
-            <button id = "userChoice">
-                <i class="fas fa-hand-rock fa-2x"></i>
-            </button>
+                <button id = "userChoice">
+                    <i class="fas fa-hand-rock fa-2x"></i>
+                </button>
 
-            <p>  <span id = "userScore">0</span> : <span id = "computerScore">0</span>  </p>
+                <p>  
+                    <span id = "userScore">0</span>
+                    <p>:</p> 
+                    <span id = "computerScore">0</span>  
+                </p>
 
-            <button id = "computerChoice">
-                <i class="fas fa-hand-rock fa-2x"></i>
-            </button>
+                <button id = "computerChoice">
+                    <i class="fas fa-hand-rock fa-2x"></i>
+                </button>
 
-            <span id="computer">COMPUTER</span>
+                <span id="computer">COMPUTER</span>
 
-            <br/>
-            <span id = "userState"></span>
-            <span id="compState"></span>
+                <br/>
+            </div>
+            
+            <div class="state">
+                <span id = "userState"></span>
+                <span id="compState"></span>
+            </div>
 
         </header>
 
         <section>
 
-            <button onmouseover="changeToRegular(this)" onmouseout="changeToSolid(this)" onclick="whoWins(this)" id = "rock">
-                <i class="fas fa-hand-rock fa-3x"></i>
-            </button>
-
-            <button onmouseover="changeToRegular(this)" onmouseout="changeToSolid(this)" onclick="whoWins(this)" id = "paper">
-                <i class="fas fa-hand-paper fa-3x"></i>
-            </button>
-
-            <button onmouseover="changeToRegular(this)" onmouseout="changeToSolid(this)" onclick="whoWins(this)" id = "scissor">
-                <i class="fas fa-hand-scissors fa-3x"></i>
-            </button>
+            <div class="buttons">
+                <button onmouseover="changeToRegular(this)" onmouseout="changeToSolid(this)" onclick="whoWins(this)" id = "rock">
+                    <i class="fas fa-hand-rock fa-3x"></i>
+                </button>
+    
+                <button onmouseover="changeToRegular(this)" onmouseout="changeToSolid(this)" onclick="whoWins(this)" id = "paper">
+                    <i class="fas fa-hand-paper fa-3x"></i>
+                </button>
+    
+                <button onmouseover="changeToRegular(this)" onmouseout="changeToSolid(this)" onclick="whoWins(this)" id = "scissor">
+                    <i class="fas fa-hand-scissors fa-3x"></i>
+                </button>
+            </div>
 
         </section>
-        
+
         <footer>
             - by Shairam R
         </footer>
+
     </body>
 </html>
