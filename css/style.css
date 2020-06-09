@@ -1,14 +1,13 @@
-/* body {
-    background-color: aquamarine;
-} */
+body {
+    margin: 0;
+    padding: 0;
+}
 
 header{
     background-color: #b3003b;
     width: 100%;
     height: 20%;
-    padding: 4%;
-    margin-top: -8px;
-    margin-left: -8px;
+    padding: 4% 0;
 }
 
 button {
@@ -18,55 +17,78 @@ button {
     margin-left: 2%;
 }
 
-#rock {
-    margin-left: 37%;
-}
-
 i {
     color: #6b6464;
 }
 
-#user {
-    margin-left: 24%;
-}
-
-#computer {
-    margin-left: 7%;
-}
-
 span {
     color: #ffffff;
-    font-size: large;
+    font-size: medium;
     font-family: cursive;
 }
 
-#userScore {
-    margin-left: 5%;
+.buttons {
+    display:flex;
+    justify-content: center;
 }
 
-#userScore, #computerScore, p {
-    display: inline;
-    color: #ffffff;
-    font-size: xx-large;
-}
-
-header button {
-    margin-top: -20px;
-    /* display: none; */
-    visibility: hidden;
-    margin-left: 5%;
+#header {
+    display: flex;
+    align-items: center;
+    align-content: space-around;
+    justify-content: center;
 }
 
 #userState {
-    margin-left: 34.5%;
-    margin-top: 3%;
     visibility: hidden;
+    margin-left: 20%;
 }
 
 #compState {
-    margin-left: 19.5%;
-    margin-top: 3%;
+    margin-left: 25%;
     visibility: hidden;
+} 
+
+#header > p {
+    margin: 0 2%;
+}
+
+@media screen and (min-width: 750px) {
+
+    span {
+        font-size: larger;
+    }
+
+    #userScore, #computerScore, p {
+        display: inline;
+        color: #ffffff;
+        font-size: xx-large;
+    }
+
+    header button {
+        margin-top: -0.2%;
+        visibility: hidden;
+    }
+
+    #header > span, #header > button,#header > p {
+        margin: 0 2%;
+    }
+
+    .state {
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 30%;
+    }
+
+    #userState {
+        margin-left: -5%;
+        visibility: hidden;
+    }
+
+    #compState {
+        margin-left: 40%;
+        visibility: hidden;
+    } 
 }
 
 
@@ -79,4 +101,10 @@ footer {
     padding: 1%;
     text-align: right;
     width: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+    #userState {
+        margin-left: 0%;
+    }
 }
