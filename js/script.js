@@ -1,7 +1,7 @@
 var icons = {
-    "rock" : ["far fa-hand-rock fa-3x", "fas fa-hand-rock fa-3x"],
-    "paper" : ["far fa-hand-paper fa-3x", "fas fa-hand-paper fa-3x"],
-    "scissor" : ["far fa-hand-scissors fa-3x", "fas fa-hand-scissors fa-3x"]
+    "rock" : { regular: "far fa-hand-rock fa-3x", solid: "fas fa-hand-rock fa-3x" },
+    "paper" : { regular: "far fa-hand-paper fa-3x", solid: "fas fa-hand-paper fa-3x" },
+    "scissor" : { regular: "far fa-hand-scissors fa-3x", solid: "fas fa-hand-scissors fa-3x" }
 }
 var objectVsRank = {
 	rock: 0,
@@ -29,7 +29,6 @@ function hide() {
 }
 
 var compare = function(computer, user) {
-    var objectLen = Object.keys(objectVsRank).length;
 	if (objectVsRank[computer] === objectVsRank[user]) {
 		return "draw";
 	} else if (((objectVsRank[computer] + 1) % objectLen) === objectVsRank[user]) {
@@ -43,7 +42,6 @@ function whoWins(elementId) {
     let choice = keys[Math.floor(Math.random() * 10) % objectLen];
     userChoice.children[0].className = icons[elementId.id]['regular'];
     computerChoice.children[0].className = icons[choice]['regular'];
-
     userChoice.style.visibility = computerChoice.style.visibility = userState.style.visibility = compState.style.visibility = "visible";
     let check = compare(elementId.id, choice)
     if( check == "win" ) {
@@ -52,6 +50,7 @@ function whoWins(elementId) {
         computerChoice.style.borderColor = compState.style.color = "#ff1a1a";
         userState.innerHTML = "Win";
         compState.innerHTML = "Loss";
+
     }
     else if( check == "loss" ) {
         compScore.innerHTML = parseInt(compScore.innerHTML) + 1;
