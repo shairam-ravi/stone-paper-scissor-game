@@ -1,96 +1,67 @@
-var options = ["far fa-hand-rock fa-3x", "far fa-hand-paper fa-3x", "far fa-hand-scissors fa-3x"];
-var values = ["rock", "paper", "scissor"];
+var icons = {
+    "rock" : ["far fa-hand-rock fa-3x", "fas fa-hand-rock fa-3x"],
+    "paper" : ["far fa-hand-paper fa-3x", "fas fa-hand-paper fa-3x"],
+    "scissor" : ["far fa-hand-scissors fa-3x", "fas fa-hand-scissors fa-3x"]
+}
+var objectVsRank = {
+	rock: 0,
+	paper: 1,
+	scissor: 2
+}
+var userChoice, computerChoice, userScore, compScore, userState, compState;
 
-function changeToRegular(elementId) {
-    if(elementId.id == "rock")
-        elementId.children[0].className = options[0];
-    else if(elementId.id == "paper")
-        elementId.children[0].className = options[1];
-    else 
-        elementId.children[0].className = options[2];
-
-    // var userScore = document.getElementById('userScore');
-    
-    // userScore.innerHTML = Math.floor(Math.random() * 10) % 3;
+function init() {
+    userChoice = document.getElementById('userChoice');
+    computerChoice = document.getElementById('computerChoice');
+    userScore = document.getElementById('userScore');
+    compScore = document.getElementById('computerScore');
+    userState = document.getElementById('userState');
+    compState = document.getElementById('compState');
 }
 
-function changeToSolid(elementId) {
-    if(elementId.id == "rock")
-        elementId.children[0].className = "fas fa-hand-rock fa-3x";
-    else if(elementId.id == "paper")
-        elementId.children[0].className = "fas fa-hand-paper fa-3x";
-    else
-        elementId.children[0].className = "fas fa-hand-scissors fa-3x";
+function changeIcon(elementId, index) {
+    elementId.children[0].className = icons[elementId.id][index];
 }
-
 function hide() {
-    document.getElementById('userChoice').style.visibility = "hidden";
-    document.getElementById('computerChoice').style.visibility = "hidden";
+    userChoice.style.visibility = computerChoice.style.visibility = userState.style.visibility = compState.style.visibility = "hidden";
+}
 
-    document.getElementById('userState').style.visibility = "hidden";
-    document.getElementById('compState').style.visibility = "hidden";
+var compare = function(computer, user) {
+    var objectLen = Object.keys(objectVsRank).length;
+	if (objectVsRank[computer] === objectVsRank[user]) {
+		return "draw";
+	} else if (((objectVsRank[computer] + 1) % objectLen) === objectVsRank[user]) {
+		return "win";
+	} else {
+		return "loss";
+	}
 }
 
 function whoWins(elementId) {
-    var userChoice = document.getElementById('userChoice');
-    var computerChoice = document.getElementById('computerChoice');
+    let keys = Object.keys(icons);
+    let choice = keys[Math.floor(Math.random() * 10) % 3];
+    userChoice.children[0].className = icons[elementId.id][0];
+    computerChoice.children[0].className = icons[choice];
 
-    var compIndex = Math.floor(Math.random() * 10) % 3;
-
-    var userScore = document.getElementById('userScore');
-    var compScore = document.getElementById('computerScore');
-
-    var userState = document.getElementById('userState');
-    var compState = document.getElementById('compState');
-
-    userChoice.children[0].className = options[values.indexOf(elementId.id)];
-    computerChoice.children[0].className = options[compIndex];
-
-    userChoice.style.visibility = "visible";
-    computerChoice.style.visibility = "visible";
-
-    userState.style.visibility = "visible";
-    compState.style.visibility = "visible";
-
-    if( (elementId.id == "rock" && values[compIndex] == "scissor") || 
-        (elementId.id == "scissor" && values[compIndex] == "paper") ||
-        (elementId.id == "paper" && values[compIndex] == "rock")
-        ) {
+    userChoice.style.visibility = computerChoice.style.visibility = userState.style.visibility = compState.style.visibility = "visible";
+    let check = compare(elementId.id, choice)
+    if( check == "win" ) {
         userScore.innerHTML = parseInt(userScore.innerHTML) + 1;
-        userChoice.style.borderColor = "#53ff1a";
-        computerChoice.style.borderColor = "#ff1a1a";
-
+        userChoice.style.borderColor = userState.style.color = "#53ff1a";
+        computerChoice.style.borderColor = compState.style.color = "#ff1a1a";
         userState.innerHTML = "Win";
-        userState.style.color = "#53ff1a";
-
         compState.innerHTML = "Loss";
-        compState.style.color = "#ff1a1a";
-
     }
-    else if( (elementId.id == "scissor" && values[compIndex] == "rock") || 
-             (elementId.id == "paper" && values[compIndex] == "scissor") ||
-             (elementId.id == "rock" && values[compIndex] == "paper")
-    ) {
+    else if( check == "loss" ) {
         compScore.innerHTML = parseInt(compScore.innerHTML) + 1;
-        userChoice.style.borderColor = "#ff1a1a";
-        computerChoice.style.borderColor = "#53ff1a";
-
+        userChoice.style.borderColor = userState.style.color = "#ff1a1a";
+        computerChoice.style.borderColor = compState.style.color = "#53ff1a";
         userState.innerHTML = "Loss";
-        userState.style.color = "#ff1a1a";
-
         compState.innerHTML = "Win";
-        compState.style.color = "#53ff1a";
     }
     else {
-        userChoice.style.borderColor = "#cccccc";
-        computerChoice.style.borderColor = "#cccccc";
-
-        userState.innerHTML = "Draw";
-        userState.style.color = "#cccccc";
-
-        compState.innerHTML = "Draw";
-        compState.style.color = "#cccccc";
+        userChoice.style.borderColor = computerChoice.style.borderColor = userState.style.color = compState.style.color = "#cccccc";
+        userState.innerHTML = compState.innerHTML = "Draw";
     }
-
     setTimeout(hide, 1500);
 }
