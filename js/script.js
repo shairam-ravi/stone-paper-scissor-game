@@ -1,12 +1,12 @@
 var icons = {
     "rock" : {
-        regular: "far fa-hand-rock fa-3x", solid: "fas fa-hand-rock fa-3x"
+        "regular": "far fa-hand-rock fa-3x", "solid": "fas fa-hand-rock fa-3x"
     },
     "paper" : {
-        regular: "far fa-hand-paper fa-3x", solid: "fas fa-hand-paper fa-3x"
+        "regular": "far fa-hand-paper fa-3x", "solid": "fas fa-hand-paper fa-3x"
     },
     "scissor" : {
-        regular: "far fa-hand-scissors fa-3x", solid: "fas fa-hand-scissors fa-3x"
+        "regular": "far fa-hand-scissors fa-3x", "solid": "fas fa-hand-scissors fa-3x"
     }
 }
 var objectVsRank = {
