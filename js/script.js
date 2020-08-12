@@ -8,6 +8,8 @@ var objectVsRank = {
 	paper: 1,
 	scissor: 2
 }
+var objectLen = Object.keys(objectVsRank).length;
+var keys = Object.keys(icons);
 var userChoice, computerChoice, userScore, compScore, userState, compState;
 
 function init() {
@@ -19,8 +21,8 @@ function init() {
     compState = document.getElementById('compState');
 }
 
-function changeIcon(elementId, index) {
-    elementId.children[0].className = icons[elementId.id][index];
+function changeIcon(elementId, key) {
+    elementId.children[0].className = icons[elementId.id][key];
 }
 function hide() {
     userChoice.style.visibility = computerChoice.style.visibility = userState.style.visibility = compState.style.visibility = "hidden";
@@ -38,10 +40,9 @@ var compare = function(computer, user) {
 }
 
 function whoWins(elementId) {
-    let keys = Object.keys(icons);
-    let choice = keys[Math.floor(Math.random() * 10) % 3];
-    userChoice.children[0].className = icons[elementId.id][0];
-    computerChoice.children[0].className = icons[choice];
+    let choice = keys[Math.floor(Math.random() * 10) % objectLen];
+    userChoice.children[0].className = icons[elementId.id]['regular'];
+    computerChoice.children[0].className = icons[choice]['regular'];
 
     userChoice.style.visibility = computerChoice.style.visibility = userState.style.visibility = compState.style.visibility = "visible";
     let check = compare(elementId.id, choice)
